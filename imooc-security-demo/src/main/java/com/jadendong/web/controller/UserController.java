@@ -1,4 +1,4 @@
-package com.jadendong.web.UserController;
+package com.jadendong.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jadendong.dto.User;
 import com.jadendong.dto.UserQueryCondition;
+import com.jadendong.exception.UserNotExistException;
 
 
 @RestController
@@ -30,11 +31,7 @@ import com.jadendong.dto.UserQueryCondition;
 public class UserController {
 	
 	@PostMapping
-	public User create(@Valid @RequestBody User user,BindingResult errors) {
-		
-		if(errors.hasErrors()) {
-			errors.getAllErrors().stream().forEach(error-> System.out.println(error.getDefaultMessage()));
-		}
+	public User create(@Valid @RequestBody User user) {
 		
 		System.out.println(user.getId());
 		System.out.println(user.getUsername());
@@ -93,10 +90,11 @@ public class UserController {
 	@JsonView(User.UserDetailView.class)
 	public User getInfo(@PathVariable String id) {
 		
-		System.out.println(id);
-		User user=new User();
-		user.setUsername("tom");
-		return user;
+		throw new UserNotExistException("1");
+//		System.out.println(id);
+//		User user=new User();
+//		user.setUsername("tom");
+//		return user;
 		
 	}
 }
