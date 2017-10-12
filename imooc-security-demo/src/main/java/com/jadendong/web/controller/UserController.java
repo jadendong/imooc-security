@@ -25,6 +25,9 @@ import com.jadendong.dto.User;
 import com.jadendong.dto.UserQueryCondition;
 import com.jadendong.exception.UserNotExistException;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 
 @RestController
 @RequestMapping("/user")
@@ -69,7 +72,9 @@ public class UserController {
 	}
 	
 	@GetMapping
-	@JsonView(User.UserSimpleView.class)	public List<User> query(UserQueryCondition condition,
+	@JsonView(User.UserSimpleView.class)
+	@ApiOperation(value="用户查询操作")
+	public List<User> query(UserQueryCondition condition,
 							@PageableDefault(page=2,size=10,sort="age,desc") Pageable pageable){
 		
 		System.out.println(ReflectionToStringBuilder.toString(condition,ToStringStyle.MULTI_LINE_STYLE));
@@ -88,7 +93,7 @@ public class UserController {
 	
 	@GetMapping("/{id:\\d+}")
 	@JsonView(User.UserDetailView.class)
-	public User getInfo(@PathVariable String id) {
+	public User getInfo(@ApiParam("用户ID") @PathVariable String id) {
 		
 //		throw new UserNotExistException("1");
 		System.out.println(id);

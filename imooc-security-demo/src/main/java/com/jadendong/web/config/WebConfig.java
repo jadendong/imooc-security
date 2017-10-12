@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.jadendong.web.filter.TimeFilter;
 import com.jadendong.web.interceptor.TimeInterceptor;
 
-@Configuration
+//@Configuration
 public class WebConfig extends WebMvcConfigurerAdapter{
 	
 	@Autowired
@@ -21,7 +21,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(timeInterceptor);
+//		registry.addInterceptor(timeInterceptor);
 	}
 
 	@Bean

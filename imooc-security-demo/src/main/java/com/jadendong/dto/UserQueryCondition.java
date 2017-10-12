@@ -1,11 +1,15 @@
 package com.jadendong.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class UserQueryCondition {
 	
 	private String username;
 	
+	@ApiModelProperty("年龄起始值")
 	private int age;
 	
+	@ApiModelProperty("年龄终止值")
 	private int ageTo;
 	
 	private String xxx;
